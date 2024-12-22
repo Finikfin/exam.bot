@@ -6,10 +6,11 @@ from aiogram.utils import markdown as md
 from datetime import datetime
 from aiogram.types import FSInputFile
 from models import ExamTicket
-async def start_command(message: types.Message):
+async def start_command_student(message: types.Message):
+    print(1)
     await message.answer("Привет! Я бот, который выдает билеты на экзамен. Напиши /ticket, чтобы получить билет.")
 
-async def get_ticket_command(message: types.Message):
+async def get_ticket_command_student(message: types.Message):
     exam_ticket = ExamTicket()
     random_ticket = exam_ticket.get_random_ticket()
     file = FSInputFile(random_ticket)
@@ -27,15 +28,15 @@ async def get_ticket_command(message: types.Message):
         await message.bot.send_photo(chat_id=teacher_id, photo=file, caption=caption_text)
 
         
-async def consultation_command(message: types.Message):
+async def consultation_command_student(message: types.Message):
     ticket = exam_ticket.get_random_ticket()
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
-            f"{message.from_user.username} запросил консультацию по билету: {ticket}"
+            f"@{message.from_user.username} запросил консультацию по билету: {ticket}"
         ))
     await message.answer("В скором времени с вами свяжется один из преподавателей")
 
-async def ready_command(message: types.Message):
+async def ready_command_student(message: types.Message):
     ticket = exam_ticket.get_random_ticket()
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(

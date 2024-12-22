@@ -4,7 +4,7 @@ from aiogram.filters import Command
 from aiogram import F
 from aiogram import Router
 from config import TOKEN
-from views import start_command, get_ticket_command, consultation_command, ready_command
+from role_manager import start_command, get_ticket_command, consultation_command, ready_command
 
 
 logging.basicConfig(level=logging.INFO)
