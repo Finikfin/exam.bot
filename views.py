@@ -11,13 +11,14 @@ async def start_command(message: types.Message):
 
 async def get_ticket_command(message: types.Message):
     exam_ticket = ExamTicket()
-    file = FSInputFile(exam_ticket.get_random_ticket())
+    random_ticket = exam_ticket.get_random_ticket()
+    file = FSInputFile(random_ticket)
     current_time = datetime.now()
     # if current_time < datetime(2024, 12, 27, 10, 30):
     #     await message.answer("Билеты будут доступны не ранее 10:30 27.12.")
     #     return
 
-    ticket = exam_ticket.get_random_ticket()
+    ticket = random_ticket
     await message.answer_photo(photo=file, caption="Ваш билет.")
     
     # Уведомление преподавателей
