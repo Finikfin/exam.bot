@@ -4,7 +4,7 @@ from aiogram.filters import Command
 from aiogram import F
 from aiogram import Router
 from config import TOKEN
-from views import start_command, get_ticket_command
+from views import start_command, get_ticket_command, consultation_command
 
 
 logging.basicConfig(level=logging.INFO)
@@ -16,7 +16,6 @@ dp = Dispatcher()
 
 router = Router()
 
-
 @router.message(Command("start"))
 async def cmd_start(message: types.Message):
     await start_command(message)
@@ -25,9 +24,12 @@ async def cmd_start(message: types.Message):
 async def cmd_ticket(message: types.Message):
     await get_ticket_command(message)
 
+@router.message(F.text == "консультация")
+async def cmd_consultation(message: types.Message):
+    await consultation_command(message)
+
 
 dp.include_router(router)
-
 
 async def main():
     await dp.start_polling(bot)

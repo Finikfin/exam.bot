@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 class ExamTicket:
     def __init__(self, ticket_list):
@@ -7,13 +8,5 @@ class ExamTicket:
     def get_random_ticket(self):
         return random.choice(self.ticket_list)
 
-
-tickets = [
-    "Билет 1:",
-    "Билет 2:",
-    "Билет 3:",
-    "Билет 4:",
-    "Билет 5:"
-]
-
-exam_ticket = ExamTicket(tickets) #n
+# Пример билетов
+exam_ticket = ExamTicket(["ticket1.png", "ticket2.png", "ticket3.png"])
