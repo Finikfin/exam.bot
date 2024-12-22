@@ -16,4 +16,4 @@ tickets = [
     "Билет 5:"
 ]
 
-exam_ticket = ExamTicket(tickets)
+exam_ticket = ExamTicket(tickets) #n
