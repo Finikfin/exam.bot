@@ -31,6 +31,6 @@ async def consultation_command(message: types.Message):
     ticket = exam_ticket.get_random_ticket()
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
-            "@", message.from_user.username, " запросил консультацию по билету: ", ticket
+            f"{message.from_user.username} запросил консультацию по билету: {ticket}"
         ))
     await message.answer("В скором времени с вами свяжется один из преподавателей")
