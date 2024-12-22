@@ -1,12 +1,12 @@
 import random
 from datetime import datetime
-
+from config import TICKET_IMAGES
 class ExamTicket:
-    def __init__(self, ticket_list):
-        self.ticket_list = ticket_list
+    def __init__(self):
+        self.ticket_list = TICKET_IMAGES
 
     def get_random_ticket(self):
         return random.choice(self.ticket_list)
 
 # Пример билетов
-exam_ticket = ExamTicket(["ticket1.png", "ticket2.png", "ticket3.png"])
+exam_ticket = ExamTicket()
