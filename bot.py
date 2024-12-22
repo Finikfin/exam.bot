@@ -20,11 +20,11 @@ router = Router()
 async def cmd_start(message: types.Message):
     await start_command(message)
 
-@router.message(F.text == "билет")
+@router.message(Command("ticket"))
 async def cmd_ticket(message: types.Message):
     await get_ticket_command(message)
 
-@router.message(F.text == "консультация")
+@router.message((Command("consultation")))
 async def cmd_consultation(message: types.Message):
     await consultation_command(message)
 

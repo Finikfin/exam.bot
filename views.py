@@ -7,7 +7,7 @@ from datetime import datetime
 from aiogram.types import FSInputFile
 from models import ExamTicket
 async def start_command(message: types.Message):
-    await message.answer("Привет! Я бот, который выдает билеты на экзамен. Напиши 'билет', чтобы получить билет.")
+    await message.answer("Привет! Я бот, который выдает билеты на экзамен. Напиши /ticket, чтобы получить билет.")
 
 async def get_ticket_command(message: types.Message):
     exam_ticket = ExamTicket()
@@ -19,17 +19,17 @@ async def get_ticket_command(message: types.Message):
     #     return
 
     ticket = random_ticket
-    await message.answer_photo(photo=file, caption="Ваш билет.")
+    await message.answer_photo(photo=file, caption="Ваш билет. чтобы запросить консультацию, напиши /consultation")
     
     # Уведомление преподавателей
     for teacher_id in TEACHER_IDS:
-        caption_text = f"Студент, {message.from_user.id}! запросил билет: : {ticket}."
-        await message.answer_photo(photo=open(photo_path, 'rb'), caption=caption_text)
+        caption_text = f"Студент, @{message.from_user.username} запросил билет: : {ticket}."
+        await message.answer_photo(photo=file, caption=caption_text)
 
         
 async def consultation_command(message: types.Message):
     ticket = exam_ticket.get_random_ticket()
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
-            "Студент ", message.from_user.id, " запросил консультацию по билету: ", ticket
+            "Студент @", message.from_user.username, " запросил консультацию по билету: ", ticket
         ))
