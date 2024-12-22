@@ -7,7 +7,6 @@ from datetime import datetime
 from aiogram.types import FSInputFile
 from models import ExamTicket
 async def start_command_student(message: types.Message):
-    print(1)
     await message.answer("Привет! Я бот, который выдает билеты на экзамен. Напиши /ticket, чтобы получить билет.")
 
 async def get_ticket_command_student(message: types.Message):
