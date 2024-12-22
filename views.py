@@ -24,7 +24,7 @@ async def get_ticket_command(message: types.Message):
     # Уведомление преподавателей
     for teacher_id in TEACHER_IDS:
         caption_text = f"Студент, @{message.from_user.username} запросил билет: : {ticket}."
-        await message.answer_photo(photo=file, caption=caption_text)
+        await message.bot.send_photo(chat_id=teacher_id, photo=file, caption=caption_text)
 
         
 async def consultation_command(message: types.Message):
