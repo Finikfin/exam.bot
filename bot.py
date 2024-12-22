@@ -24,7 +24,7 @@ async def cmd_start(message: types.Message):
 async def cmd_ticket(message: types.Message):
     await get_ticket_command(message)
 
-@router.message((Command("consultation")))
+@router.message(Command("consultation"))
 async def cmd_consultation(message: types.Message):
     await consultation_command(message)
 
