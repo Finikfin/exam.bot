@@ -23,7 +23,7 @@ async def get_ticket_command(message: types.Message):
     
     # Уведомление преподавателей
     for teacher_id in TEACHER_IDS:
-        caption_text = f"Студент, @{message.from_user.username} запросил билет: : {ticket}."
+        caption_text = f"@{message.from_user.username} запросил билет: {ticket}."
         await message.bot.send_photo(chat_id=teacher_id, photo=file, caption=caption_text)
 
         
@@ -31,5 +31,5 @@ async def consultation_command(message: types.Message):
     ticket = exam_ticket.get_random_ticket()
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
-            "Студент @", message.from_user.username, " запросил консультацию по билету: ", ticket
+            "@", message.from_user.username, " запросил консультацию по билету: ", ticket
         ))
