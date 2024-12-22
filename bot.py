@@ -32,10 +32,13 @@ async def cmd_consultation(message: types.Message):
 async def cmd_ready(message: types.Message):
     await ready_command(message)
 
-@router.message((Command("get_tickets")))
+@router.message((Command("get_ticket")))
 async def cmd_ready(message: types.Message):
     await get_tickets_command(message)
 dp.include_router(router)
+
+
+
 
 async def main():
     await dp.start_polling(bot)
