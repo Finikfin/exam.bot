@@ -42,3 +42,6 @@ async def ready_command_student(message: types.Message):
             f"@{message.from_user.username} готов сдавать билет: {ticket}"
         ))
     await message.answer("В скором времени с вами свяжется один из преподавателей")
+
+async def get_tickets_command_student(message: types.Message):
+    pass

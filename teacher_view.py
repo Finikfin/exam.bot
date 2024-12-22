@@ -17,3 +17,6 @@ async def consultation_command_teacher(message: types.Message):
 
 async def ready_command_teacher(message: types.Message):
     pass
+
+async def get_tickets_command_teacher(message: types.Message):
+    pass

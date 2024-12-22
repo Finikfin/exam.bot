@@ -4,7 +4,7 @@ from aiogram.filters import Command
 from aiogram import F
 from aiogram import Router
 from config import TOKEN
-from role_manager import start_command, get_ticket_command, consultation_command, ready_command
+from role_manager import start_command, get_ticket_command, consultation_command, ready_command, get_tickets_command
 
 
 logging.basicConfig(level=logging.INFO)
@@ -32,6 +32,9 @@ async def cmd_consultation(message: types.Message):
 async def cmd_ready(message: types.Message):
     await ready_command(message)
 
+@router.message((Command("get_tickets")))
+async def cmd_ready(message: types.Message):
+    await get_tickets_command(message)
 dp.include_router(router)
 
 async def main():
