@@ -19,7 +19,7 @@ async def get_ticket_command(message: types.Message):
     #     return
 
     ticket = random_ticket
-    await message.answer_photo(photo=file, caption="Ваш билет. чтобы запросить консультацию, напиши /consultation")
+    await message.answer_photo(photo=file, caption="Ваш билет. чтобы запросить консультацию, напиши /consultation, если ты готов сдавать, напиши /ready ")
     
     # Уведомление преподавателей
     for teacher_id in TEACHER_IDS:
@@ -32,4 +32,11 @@ async def consultation_command(message: types.Message):
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
             "@", message.from_user.username, " запросил консультацию по билету: ", ticket
+        ))
+
+async def ready_command(message: types.Message):
+    ticket = exam_ticket.get_random_ticket()
+    for teacher_id in TEACHER_IDS:
+        await message.bot.send_message(teacher_id, md.text(
+            "@", message.from_user.username, " готов сдавать билет: ", ticket
         ))
