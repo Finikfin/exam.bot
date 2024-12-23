@@ -39,10 +39,11 @@ dp.include_router(router)
 
 @router.callback_query(F.data.startswith('btn'))
 async def process_callback_kb1btn1(callback_query: types.CallbackQuery):
-    code = callback_query.data[-1]
+    code = callback_query.data
     if code.isdigit():
         code = int(code)
-    await bot.send_message(callback_query.from_user.id, f'Вот ваш билет! code={code}')
+    code = code[3:]
+    await bot.send_message(callback_query.from_user.id, f'Вот ваш билет! {code}')
 
 
 async def main():
