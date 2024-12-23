@@ -43,6 +43,8 @@ async def consultation_command_student(message: types.Message):
     if message.from_user.id not in STUDENT_IDS:
         await message.answer("Ты не ученик группы Афанасьева.")
         return
+    if message.from_user.username not in BIND_TICKET_IMAGES.values():
+        await message.answer("Ты еще не взял билет.")
     ticket = None
     for i in BIND_TICKET_IMAGES.keys():
         if BIND_TICKET_IMAGES[i] == message.from_user.username:
@@ -59,6 +61,8 @@ async def ready_command_student(message: types.Message):
     if message.from_user.id not in STUDENT_IDS:
         await message.answer("Ты не ученик группы Афанасьева.")
         return
+    if message.from_user.username not in BIND_TICKET_IMAGES.values():
+        await message.answer("Ты еще не взял билет.")
     ticket = None
     for i in BIND_TICKET_IMAGES.keys():
         if BIND_TICKET_IMAGES[i] == message.from_user.username:
