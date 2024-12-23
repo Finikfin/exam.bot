@@ -1,4 +1,4 @@
-TOKEN = "7691139246:AAG1lPNpPFtW3E0pHq_ubHc0-Zkr4KK-MAw"
+TOKEN = "7691139246:AAGVxWa_2QPiOPUoNjiqjgYRFe_l2QnBQFk"
 TEACHER_IDS = [6170560152, 245851335, 1362703815]  # Замените на реальные ID преподавателей
 TICKET_IMAGES = [
     "билеты/Билет№01.png",
