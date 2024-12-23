@@ -7,16 +7,6 @@ from aiogram.utils import markdown as md
 from datetime import datetime
 from aiogram.types import FSInputFile
 from models import ExamTicket
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
-from aiogram.utils.keyboard import InlineKeyboardBuilder
-
-inline_kb_full = InlineKeyboardMarkup()
-bl_1 = InlineKeyboardButton('билет 1', callback_data='btn1')
-bl_2 = InlineKeyboardButton('билет 2', callback_data='btn2')
-bl_3 = InlineKeyboardButton('билет 3', callback_data='btn3')
-inline_kb_full.add(bl_1, bl_2, bl_3)
-
-
 
 async def start_command_teacher(message: types.Message):
     await message.answer("Привет, учитель! Я бот, который выдает билеты на экзамен. Напиши /get_ticket, чтобы получить информацию о билете.")
@@ -41,4 +31,3 @@ async def get_tickets_command_teacher(message: types.Message):
         all_tic.append(tic)
     await message.answer("Вот список всех билетов с привязкой к ученикам: ", all_tic)
     await message.reply("Выберите билет", reply_markup=kb.inline_kb1)
-
