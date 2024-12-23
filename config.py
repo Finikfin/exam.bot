@@ -7,5 +7,5 @@ TICKET_IMAGES = []
 for x in os.listdir(dir):
     TICKET_IMAGES.append(f'билеты/{x}')
 
-TICKET_IMAGES_COPY = list(c.TICKET_IMAGES)
+TICKET_IMAGES_COPY = list(TICKET_IMAGES)
 BIND_TICKET_IMAGES = {}

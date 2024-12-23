@@ -11,4 +11,4 @@ class ExamTicket:
         return random.choice(self.ticket_list)
 
 # Пример билетов
-# exam_ticket = ExamTicket()
+exam_ticket = ExamTicket()
