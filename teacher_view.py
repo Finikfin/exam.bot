@@ -9,7 +9,7 @@ from models import ExamTicket
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 async def start_command_teacher(message: types.Message):
-    await message.answer("Привет! Я бот, который выдает билеты на экзамен. Напиши /get_ticket, чтобы получить информацию о билете.")
+    await message.answer("Привет, учитель! Я бот, который выдает билеты на экзамен. Напиши /get_ticket, чтобы получить информацию о билете.")
 
 async def get_ticket_command_teacher(message: types.Message):
     pass
