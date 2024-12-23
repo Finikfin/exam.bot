@@ -1,7 +1,8 @@
 import random
 import config as c
 from datetime import datetime
-TICKET_IMAGES_COPY = list(c.TICKET_IMAGES)
+from config import TICKET_IMAGES_COPY
+
 class ExamTicket:
     def __init__(self):
         self.ticket_list = TICKET_IMAGES_COPY
@@ -10,4 +11,4 @@ class ExamTicket:
         return random.choice(self.ticket_list)
 
 # Пример билетов
-exam_ticket = ExamTicket()
+# exam_ticket = ExamTicket()
