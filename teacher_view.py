@@ -30,4 +30,4 @@ async def get_tickets_command_teacher(message: types.Message):
         tic = str(f"{key} - {BIND_TICKET_IMAGES[key]}")
         all_tic.append(tic)
     await message.answer(f"Вот список всех билетов с привязкой к ученикам: {all_tic}")
-    await message.reply("Выберите билет", reply_markup=kb.inline_kb1)
+    await message.reply("Выберите билет", reply_markup=kb.inline_kb_full)
