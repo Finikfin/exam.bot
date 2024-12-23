@@ -7,6 +7,7 @@ from config import TOKEN
 from role_manager import start_command, get_ticket_command, consultation_command, ready_command, get_tickets_command
 
 
+
 logging.basicConfig(level=logging.INFO)
 
 
@@ -37,7 +38,12 @@ async def cmd_ready(message: types.Message):
     await get_tickets_command(message)
 dp.include_router(router)
 
-
+'''@dp.callback_query_handler(func=lambda c: c.data and c.data.startswith('btn'))
+async def process_callback_kb1btn1(callback_query: types.CallbackQuery):
+    code = callback_query.data[-1]
+    if code.isdigit():
+        code = int(code)
+    #await bot.send_message(callback_query.from_user.id, f'Вот ваш билет! code={code}')'''
 
 
 async def main():

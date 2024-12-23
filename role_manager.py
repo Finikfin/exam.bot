@@ -8,6 +8,8 @@ from aiogram.types import FSInputFile
 from models import ExamTicket
 from student_view import start_command_student, get_ticket_command_student, consultation_command_student, ready_command_student, get_tickets_command_student
 from teacher_view import start_command_teacher, get_ticket_command_teacher, consultation_command_teacher, ready_command_teacher, get_tickets_command_teacher
+
+
 async def start_command(message: types.Message):
     if message.from_user.id in TEACHER_IDS:
         await start_command_teacher(message)
