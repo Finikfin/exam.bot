@@ -29,7 +29,7 @@ async def get_ticket_command_student(message: types.Message):
         BIND_TICKET_IMAGES[ticket] = message.from_user.username
         TICKET_IMAGES_COPY.remove(ticket)
     else:
-        await message.answer('Ты уже взял билет.')
+        await message.answer('⛔️Ты уже взял билет⛔️')
 
         
 async def consultation_command_student(message: types.Message):

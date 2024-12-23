@@ -9,7 +9,7 @@ from aiogram.types import FSInputFile
 from models import ExamTicket
 
 async def start_command_teacher(message: types.Message):
-    await message.answer("Привет, учитель! Я бот, который выдает билеты на экзамен. Напиши /get_ticket, чтобы получить информацию о билете.")
+    await message.answer("👋Привет, учитель! Я бот, который выдает билеты на экзамен. Напиши /get_ticket, чтобы получить информацию о билете.")
 
 async def get_ticket_command_teacher(message: types.Message):
     pass
@@ -28,7 +28,7 @@ async def get_tickets_command_teacher(message: types.Message):
             all_tic.append(f'{i[7:15]} - пока никто не взял этот билет')
     for key in BIND_TICKET_IMAGES:
 
-        tic = str(f"{key[7:15]} - @{BIND_TICKET_IMAGES[key]}")
+        tic = str(f"▪️{key[7:15]} - @{BIND_TICKET_IMAGES[key]}")
         all_tic.append(tic)
     all_tic_s = sorted(all_tic)
     responce = "\n".join(all_tic_s)
