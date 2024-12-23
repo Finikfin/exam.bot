@@ -33,4 +33,4 @@ async def get_tickets_command_teacher(message: types.Message):
     all_tic_s = sorted(all_tic)
     responce = "\n".join(all_tic_s)
     await message.answer(f"❕Вот список всех билетов с привязкой к ученикам: \n{responce}")
-    await message.reply("Выберите билет", reply_markup=kb.inline_kb_full)
+    await message.reply("🤞Выберите билет", reply_markup=kb.inline_kb_full)
