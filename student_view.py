@@ -1,15 +1,22 @@
 import logging
 from aiogram import types
-from config import TEACHER_IDS, TICKET_IMAGES, BIND_TICKET_IMAGES
+from config import TEACHER_IDS, TICKET_IMAGES, BIND_TICKET_IMAGES, STUDENT_IDS
 from models import exam_ticket
 from aiogram.utils import markdown as md
 from datetime import datetime
 from aiogram.types import FSInputFile
 from models import ExamTicket, TICKET_IMAGES_COPY
+
 async def start_command_student(message: types.Message):
+    if message.from_user.id not in STUDENT_IDS:
+        await message.answer("Ты не ученик группы Афанасьева.")
+        return
     await message.answer("👋Привет, ученик! Я бот, который выдает билеты на экзамен. Напиши /ticket, чтобы получить билет.")
 
 async def get_ticket_command_student(message: types.Message):
+    if message.from_user.id not in STUDENT_IDS:
+        await message.answer("Ты не ученик группы Афанасьева.")
+        return
     if message.from_user.username not in list(BIND_TICKET_IMAGES.values()):
         exam_ticket = ExamTicket()
         random_ticket = exam_ticket.get_random_ticket()
@@ -33,6 +40,9 @@ async def get_ticket_command_student(message: types.Message):
 
         
 async def consultation_command_student(message: types.Message):
+    if message.from_user.id not in STUDENT_IDS:
+        await message.answer("Ты не ученик группы Афанасьева.")
+        return
     ticket = None
     for i in BIND_TICKET_IMAGES.keys():
         if BIND_TICKET_IMAGES[i] == message.from_user.username:
@@ -46,6 +56,9 @@ async def consultation_command_student(message: types.Message):
     await message.answer("🕐В скором времени с вами свяжется один из преподавателей")
 
 async def ready_command_student(message: types.Message):
+    if message.from_user.id not in STUDENT_IDS:
+        await message.answer("Ты не ученик группы Афанасьева.")
+        return
     ticket = None
     for i in BIND_TICKET_IMAGES.keys():
         if BIND_TICKET_IMAGES[i] == message.from_user.username:
