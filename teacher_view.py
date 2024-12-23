@@ -27,9 +27,9 @@ async def get_tickets_command_teacher(message: types.Message):
         if i not in tic_keys:
             all_tic.append(i)
     for key in BIND_TICKET_IMAGES:
-        tic = str(f"{key} - {BIND_TICKET_IMAGES[key]}")
+        tic = str(f"{key} - @{BIND_TICKET_IMAGES[key]}")
         all_tic.append(tic)
     all_tic_s = sorted(all_tic)
     responce = "\n".join(all_tic_s)
-    await message.answer(f"Вот список всех билетов с привязкой к ученикам: {responce}")
+    await message.answer(f"Вот список всех билетов с привязкой к ученикам: \n{responce}")
     await message.reply("Выберите билет", reply_markup=kb.inline_kb_full)
