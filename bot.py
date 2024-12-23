@@ -1,7 +1,7 @@
 import logging
 from aiogram import Bot, Dispatcher, types, Router, F
 from aiogram.filters import Command
-from aiogram.handlers import CallbackQueryHandler
+from aiogram.types import FSInputFile
 from config import TOKEN
 from role_manager import start_command, get_ticket_command, consultation_command, ready_command, get_tickets_command
 
@@ -40,11 +40,12 @@ dp.include_router(router)
 @router.callback_query(F.data.startswith('btn'))
 async def process_callback_kb1btn1(callback_query: types.CallbackQuery):
     code = callback_query.data
-    if code.isdigit():
-        code = int(code)
+    if len(str(code)) == 1:
+        code = f'0{code}'
     code = code[3:]
-    await bot.send_message(callback_query.from_user.id, f'Вот ваш билет! {code}')
-
+    caption_text = f'Вот ваш билет №{code}! '
+    file = FSInputFile(f"билеты/Билет№{code}.png")
+    await bot.send_photo(chat_id=callback_query.from_user.id, photo=file, caption=caption_text)
 
 async def main():
     await dp.start_polling(bot)
