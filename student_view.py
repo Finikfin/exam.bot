@@ -33,7 +33,12 @@ async def get_ticket_command_student(message: types.Message):
 
         
 async def consultation_command_student(message: types.Message):
-    ticket = exam_ticket.get_random_ticket()
+    ticket = None
+    for i in BIND_TICKET_IMAGES.keys():
+        if BIND_TICKET_IMAGES[i] == message.from_user.username:
+            ticket = i
+    if ticket == None:
+        print('ТРЕВОГА КАКАЯ-ТО ФИГНЯ')
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
             f"❕@{message.from_user.username} запросил консультацию по билету: {ticket[7:15]}"
@@ -41,7 +46,10 @@ async def consultation_command_student(message: types.Message):
     await message.answer("🕐В скором времени с вами свяжется один из преподавателей")
 
 async def ready_command_student(message: types.Message):
-    ticket = exam_ticket.get_random_ticket()
+    ticket = None
+    for i in BIND_TICKET_IMAGES.keys():
+        if BIND_TICKET_IMAGES[i] == message.from_user.username:
+            ticket = i
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
             f"❕@{message.from_user.username} готов сдавать билет: {ticket[7:15]}"
