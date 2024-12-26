@@ -31,8 +31,11 @@ async def get_ticket_command_student(message: types.Message):
         
         # Уведомление преподавателей
         for teacher_id in TEACHER_IDS:
-            caption_text = f"❕@{message.from_user.username} запросил билет: {ticket.replace('.png', '').replace(dir, '')}."
-            await message.bot.send_photo(chat_id=teacher_id, photo=file, caption=caption_text)
+            try:
+                caption_text = f"❕@{message.from_user.username} запросил билет: {ticket.replace('.png', '').replace(dir, '')}."
+                await message.bot.send_photo(chat_id=teacher_id, photo=file, caption=caption_text)
+            except:
+                print(f'{teacher_id} еще не запускал бота')
         BIND_TICKET_IMAGES[ticket] = message.from_user.username
         TICKET_IMAGES_COPY.remove(ticket)
     else:
@@ -52,9 +55,12 @@ async def consultation_command_student(message: types.Message):
     if ticket == None:
         print('ТРЕВОГА КАКАЯ-ТО ФИГНЯ')
     for teacher_id in TEACHER_IDS:
-        await message.bot.send_message(teacher_id, md.text(
-            f"❕@{message.from_user.username} запросил консультацию по билету: {ticket.replace('.png', '').replace(dir, '')}"
-        ))
+        try:
+            await message.bot.send_message(teacher_id, md.text(
+                f"❕@{message.from_user.username} запросил консультацию по билету: {ticket.replace('.png', '').replace(dir, '')}"
+            ))
+        except:
+            print(f'{teacher_id} еще не запускал бота')
     await message.answer("🕐В скором времени с вами свяжется один из преподавателей")
 
 async def ready_command_student(message: types.Message):
@@ -68,9 +74,12 @@ async def ready_command_student(message: types.Message):
         if BIND_TICKET_IMAGES[i] == message.from_user.username:
             ticket = i
     for teacher_id in TEACHER_IDS:
-        await message.bot.send_message(teacher_id, md.text(
-            f"❕@{message.from_user.username} готов сдавать билет: {ticket.replace('.png', '').replace(dir, '')}"
-        ))
+        try:
+            await message.bot.send_message(teacher_id, md.text(
+                f"❕@{message.from_user.username} готов сдавать билет: {ticket.replace('.png', '').replace(dir, '')}"
+            ))
+        except:
+            print(f'{teacher_id} еще не запускал бота')
     await message.answer("🕐В скором времени с вами свяжется один из преподавателей")
 
 async def get_tickets_command_student(message: types.Message):
