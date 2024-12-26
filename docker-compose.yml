@@ -8,5 +8,5 @@ services:
     container_name: exam.bot
     restart: unless-stopped 
     volumes:
-      - ./tickets:./tickets/
+      - /projects/dnd/exam.bot/tickets:/app/tickets/
 
