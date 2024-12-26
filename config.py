@@ -1,5 +1,5 @@
 import os
-dir = "./билеты"
+dir = "./tickets/"
 
 TOKEN = "7691139246:AAGVxWa_2QPiOPUoNjiqjgYRFe_l2QnBQFk"
 TEACHER_IDS = [
