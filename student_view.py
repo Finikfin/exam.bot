@@ -1,6 +1,6 @@
 import logging
 from aiogram import types
-from config import TEACHER_IDS, TICKET_IMAGES, BIND_TICKET_IMAGES, STUDENT_IDS
+from config import TEACHER_IDS, TICKET_IMAGES, BIND_TICKET_IMAGES, STUDENT_IDS, dir
 from models import exam_ticket
 from aiogram.utils import markdown as md
 from datetime import datetime
@@ -31,7 +31,7 @@ async def get_ticket_command_student(message: types.Message):
         
         # Уведомление преподавателей
         for teacher_id in TEACHER_IDS:
-            caption_text = f"❕@{message.from_user.username} запросил билет: {ticket.replace('.png', '')[7:]}."
+            caption_text = f"❕@{message.from_user.username} запросил билет: {ticket.replace('.png', '').replace(dir, '')}."
             await message.bot.send_photo(chat_id=teacher_id, photo=file, caption=caption_text)
         BIND_TICKET_IMAGES[ticket] = message.from_user.username
         TICKET_IMAGES_COPY.remove(ticket)
@@ -53,7 +53,7 @@ async def consultation_command_student(message: types.Message):
         print('ТРЕВОГА КАКАЯ-ТО ФИГНЯ')
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
-            f"❕@{message.from_user.username} запросил консультацию по билету: {ticket.replace('.png', '')[7:]}"
+            f"❕@{message.from_user.username} запросил консультацию по билету: {ticket.replace('.png', '').replace(dir, '')}"
         ))
     await message.answer("🕐В скором времени с вами свяжется один из преподавателей")
 
@@ -69,7 +69,7 @@ async def ready_command_student(message: types.Message):
             ticket = i
     for teacher_id in TEACHER_IDS:
         await message.bot.send_message(teacher_id, md.text(
-            f"❕@{message.from_user.username} готов сдавать билет: {ticket.replace('.png', '')[7:]}"
+            f"❕@{message.from_user.username} готов сдавать билет: {ticket.replace('.png', '').replace(dir, '')}"
         ))
     await message.answer("🕐В скором времени с вами свяжется один из преподавателей")
 

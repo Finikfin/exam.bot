@@ -1,7 +1,7 @@
 import logging
 import keyboards as kb
 from aiogram import types
-from config import TEACHER_IDS, TICKET_IMAGES, BIND_TICKET_IMAGES
+from config import TEACHER_IDS, TICKET_IMAGES, BIND_TICKET_IMAGES, dir
 from models import exam_ticket
 from aiogram.utils import markdown as md
 from datetime import datetime
@@ -25,10 +25,10 @@ async def get_tickets_command_teacher(message: types.Message):
     all_tic = []
     for i in TICKET_IMAGES:
         if i not in tic_keys:
-            all_tic.append(f'▪️{i[7:15]} - пока никто не взял этот билет')
+            all_tic.append(f"▪️{i.replace('.png', '').replace(dir, '')} - пока никто не взял этот билет")
     for key in BIND_TICKET_IMAGES:
 
-        tic = str(f"▪️{key[7:15]} - @{BIND_TICKET_IMAGES[key]}")
+        tic = str(f"▪️{key.replace('.png', '').replace(dir, '')} - @{BIND_TICKET_IMAGES[key]}")
         all_tic.append(tic)
     all_tic_s = sorted(all_tic)
     responce = "\n".join(all_tic_s)
