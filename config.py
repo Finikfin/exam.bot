@@ -32,7 +32,7 @@ STUDENT_IDS = [
 
 TICKET_IMAGES = []
 for x in os.listdir(dir):
-    TICKET_IMAGES.append(f'билеты/{x}')
+    TICKET_IMAGES.append(f'{dir}/{x}')
 
 TICKET_IMAGES_COPY = list(TICKET_IMAGES)
 BIND_TICKET_IMAGES = {}
